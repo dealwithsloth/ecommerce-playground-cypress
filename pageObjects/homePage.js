@@ -10,5 +10,9 @@ class HomePage {
     get loginButton() {
         return cy.xpath("//span[contains(.,'Login')]")
     }
+
+    get logoutButton() {
+        return cy.xpath("//span[contains(.,'Logout')]")
+    }
 }
 export default new HomePage();
