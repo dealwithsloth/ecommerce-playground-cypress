@@ -4,7 +4,14 @@
     "password": "TestPassword2@",
     "firstName": "Automatic",
     "lastName": "Test",
-    "phoneNumber": "123123123"
+    "phoneNumber": "123123123",
+    "companyName": "AutomaticCompany",
+    "addressFirstLine": "FirstLineOfAddress",
+    "addressSecondLine": "SecondLineOfAddress",
+    "city": "TestedCityName",
+    "postCode": "123456",
+    "country": "Poland",
+    "region": "Malopolskie"
   },
   "userIncorrect": {
     "mailAddress": "incorrect@incorrect.com",

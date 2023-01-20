@@ -71,8 +71,12 @@ class SingleRegister {
         return cy.get('.breadcrumb')
     }
 
+    get accountBreadCrumbLink() {
+        return cy.xpath("//a[.='Account']")
+    }
+
     get pageTitle() {
         return cy.get('.page-title')
     }
 }
-export default new SingleRegister();
+export default new SingleRegister()
