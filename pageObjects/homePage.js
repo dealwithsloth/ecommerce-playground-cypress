@@ -14,5 +14,9 @@ class HomePage {
     get logoutButton() {
         return cy.xpath("//span[contains(.,'Logout')]")
     }
+
+    get successMessage() {
+        return cy.get('.alert-success')
+    }
 }
 export default new HomePage();

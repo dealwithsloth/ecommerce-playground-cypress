@@ -22,6 +22,11 @@
 //
 //
 // -- This will overwrite an existing command --
+
+import singleRegister from "../../pageObjects/singleRegister"
+import registerData from '../fixtures/registerData.json'
+import singleLogin from '../../pageObjects/singleLogin'
+
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
     if (options && options.sensitive) {
@@ -33,4 +38,14 @@ Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
         })
     }
     return originalFn(element, text, options)
+})
+
+Cypress.Commands.add('login', () => {
+    cy.session('loginSession', () => {
+        cy.visit('/index.php?route=account/login')
+        singleRegister.emailInput.clear().type(registerData.userCorrect.mailAddress)
+        singleRegister.passwordInput.clear().type(registerData.userCorrect.password, { sensitive: true })
+        singleLogin.logInButton.should('be.visible')
+        singleLogin.logInButton.click()
+    })
 })
