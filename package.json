@@ -7,6 +7,7 @@
     "cypress-xpath": "^2.0.1"
   },
   "scripts": {
-    "test": "cypress open"
+    "test": "cypress open",
+    "all": "cypress run  --headless"
   }
 }
