@@ -6,11 +6,13 @@ import myAccountSection from '../../pageObjects/myAccountSection'
 import editAccount from '../../pageObjects/editAccount'
 import addressBook from '../../pageObjects/addressBook'
 import wishList from '../../pageObjects/wishList'
+import productPage from '../../pageObjects/productPage'
+import cart from '../../pageObjects/cart'
 
 describe('My Account section tests', () => {
     beforeEach(() => {
         cy.login()
-        myAccountSection.myAccountPageLink
+        myAccountSection.myAccountPageLink()
     })
 
     it('My Account cards visibility', () => {
@@ -121,12 +123,22 @@ describe('My Account section tests', () => {
 
     it('Modify wish list', () => {
         myAccountSection.myAccountCard.should('be.visible').and('contain.text', 'My Account')
-        myAccountSection.wishListLink.should('be.visible')
-        myAccountSection.wishListLink.click()
+        productPage.simpleProductPage()
+        productPage.addToWishListButton.click()
+        productPage.successMessageTitle.should('be.visible').and('contain.text', 'Wish List ')
+        productPage.goToWishListButton.click()
         singleRegister.pageTitle.should('be.visible').and('contain.text', 'My Wish List')
         wishList.productTable.should('be.visible')
         wishList.wishListAddToCartButton.click()
         wishList.addedToCartMessage.should('be.visible').and('contain.text', 'Success: You have added')
+        productPage.successMessageGoToCartButton.click()
+        cart.deleteFromCartButton.should('be.visible')
+        cart.deleteFromCartButton.click()
+        cart.emptyCartContent.should('be.visible').and('contain.text', 'Your shopping cart is empty!')
+        myAccountSection.myAccountPageLink()
+        myAccountSection.myAccountCard.should('be.visible').and('contain.text', 'My Account')
+        myAccountSection.wishListLink.should('be.visible')
+        myAccountSection.wishListLink.click()
         wishList.wishListRemoveButton.click()
         homePage.successMessage.should('be.visible').and('contain.text', 'Success: You have modified your wish list!')
     })

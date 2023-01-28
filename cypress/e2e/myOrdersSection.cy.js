@@ -6,7 +6,7 @@ import myOrders from '../../pageObjects/myOrders'
 describe('My Orders section tests', () => {
     beforeEach(() => {
         cy.login()
-        myAccountSection.myAccountPageLink
+        myAccountSection.myAccountPageLink()
     })
 
     it('My Orders cards visibility', () => {
