@@ -90,5 +90,77 @@ class ProductPage {
     get successMessageCartLink() {
         return cy.xpath("//a[.='shopping cart']")
     }
+
+    get askQuestionButton() {
+        return cy.get('.fa-question-circle.icon')
+    }
+
+    get askQuestionContentBody() {
+        return cy.get('.modal-md .modal-body')
+    }
+
+    get askQuestionHeader() {
+        return cy.get('.modal-header')
+    }
+
+    get askQuestionNameInput() {
+        return cy.get("[placeholder='Your name']")
+    }
+
+    get askQuestionMailInput() {
+        return cy.get("[placeholder='Your email']")
+    }
+
+    get askQuestionSubjectInput() {
+        return cy.get("[name='subject']")
+    }
+
+    get askQuestionMessageInput() {
+        return cy.get("[name='message']")
+    }
+
+    get askQuestionSendButton() {
+        return cy.xpath("//button[@class='btn btn-secondary btn-lg']")
+    }
+
+    get askQuestionNameErrorMessage() {
+        return cy.get(':nth-child(1) > .error')
+    }
+
+    get askQuestionEmailErrorMessage() {
+        return cy.get(':nth-child(2) > .error')
+    }
+
+    get askQuestionSubjectErrorMessage() {
+        return cy.get(':nth-child(3) > .error')
+    }
+
+    get askQuestionMessageErrorMesssage() {
+        return cy.get(':nth-child(4) > .error')
+    }
+
+    get reviewRatingGroup() {
+        return cy.get('.select-rating')
+    }
+
+    get reviewRatingFiveStars() {
+        return cy.get('[for="rating-5-216860"]')
+    }
+
+    get reviewSuccessMessage() {
+        return cy.get('#form-review > .alert')
+    }
+
+    get reviewNameInput() {
+        return cy.get('#input-name')
+    }
+
+    get reviewMessageInput() {
+        return cy.get('#input-review')
+    }
+
+    get reviewSendButton() {
+        return cy.get('#button-review')
+    }
 }
 export default new ProductPage()

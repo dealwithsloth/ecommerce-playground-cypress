@@ -33,5 +33,6 @@ describe('My Orders section tests', () => {
         myOrders.commentInput.clear().type('Test comment')
         myOrders.submitButton.click()
         singleRegister.pageTitle.should('be.visible').and('contain.text', 'Product Returns')
+        cy.clearCart()
     })
 })

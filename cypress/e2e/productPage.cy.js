@@ -3,6 +3,7 @@ import singleRegister from "../../pageObjects/singleRegister"
 import cart from "../../pageObjects/cart"
 import homePage from "../../pageObjects/homePage"
 import myOrders from "../../pageObjects/myOrders"
+import registerData from "../fixtures/registerData.json"
 
 describe('Product tests', () => {
     beforeEach(() => {
@@ -65,5 +66,35 @@ describe('Product tests', () => {
         myOrders.returnButton.should('be.visible')
         myOrders.returnButton.click()
         cart.emptyCartContent.should('be.visible').and('contain.text', 'Your shopping cart is empty!')
+    })
+
+    it('Ask a question form', () => {
+        productPage.askQuestionButton.should('be.visible')
+        productPage.askQuestionButton.click()
+        productPage.askQuestionHeader.should('be.visible').and('contain.text', "Contact us")
+        productPage.askQuestionSendButton.click()
+        productPage.askQuestionNameErrorMessage.should('be.visible').and('contain.text', 'Name must be between 3 and 32 characters!')
+        productPage.askQuestionEmailErrorMessage.should('be.visible').and('contain.text', 'E-Mail Address does not appear to be valid!')
+        productPage.askQuestionSubjectErrorMessage.should('be.visible').and('contain.text', 'Subject must be between 3 and 78 characters!')
+        productPage.askQuestionMessageErrorMesssage.should('be.visible').and('contain.text', 'Message must be between 10 and 3000 characters!')
+        productPage.askQuestionNameInput.type(registerData.userCorrect.firstName)
+        productPage.askQuestionMailInput.type(registerData.userCorrect.mailAddress)
+        productPage.askQuestionSubjectInput.type(registerData.userCorrect.companyName)
+        productPage.askQuestionMessageInput.type(registerData.userIncorrect.mailAddress)
+        productPage.askQuestionSendButton.click()
+        homePage.successMessage.should('be.visible').and('contain.text', 'Your enquiry has been successfully sent to the store owner!')
+    })
+
+    it('Ratings', () => {
+        productPage.reviewRatingGroup.should('be.visible')
+        productPage.reviewSendButton.click()
+        productPage.reviewSuccessMessage.should('be.visible').and('contain.text', 'Warning: Please select a review rating!')
+        productPage.reviewRatingFiveStars.click()
+        productPage.reviewSendButton.click()
+        productPage.reviewSuccessMessage.should('be.visible').and('contain.text', 'Warning: Review Text must be between 25 and 1000 characters!')
+        productPage.reviewNameInput.clear().type(registerData.userCorrect.firstName)
+        productPage.reviewMessageInput.type('Great story of long message which has more than 25 characters')
+        productPage.reviewSendButton.click()
+        productPage.reviewSuccessMessage.should('be.visible').and('contain.text', 'Thank you for your review. It has been submitted to the webmaster for approval.')
     })
 })
