@@ -6,7 +6,7 @@ import myOrders from '../../pageObjects/myOrders'
 describe('My Orders section tests', () => {
     beforeEach(() => {
         cy.login()
-        myAccountSection.myAccountPageLink
+        myAccountSection.myAccountPageLink()
     })
 
     it('My Orders cards visibility', () => {
@@ -33,5 +33,6 @@ describe('My Orders section tests', () => {
         myOrders.commentInput.clear().type('Test comment')
         myOrders.submitButton.click()
         singleRegister.pageTitle.should('be.visible').and('contain.text', 'Product Returns')
+        cy.clearCart()
     })
 })

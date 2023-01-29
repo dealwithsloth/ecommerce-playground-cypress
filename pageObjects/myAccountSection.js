@@ -1,10 +1,10 @@
 class MyAccountSection {
+    myAccountPageLink() {
+        cy.visit('https://ecommerce-playground.lambdatest.io/index.php?route=account/account')
+    }
+    
     get myAccountContent() {
         return cy.get('#content')
-    }
-
-    get myAccountPageLink() {
-        return cy.visit('https://ecommerce-playground.lambdatest.io/index.php?route=account/account')
     }
 
     get myAccountCard() {

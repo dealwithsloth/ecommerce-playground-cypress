@@ -29,6 +29,7 @@ import singleLogin from '../../pageObjects/singleLogin'
 import productPage from "../../pageObjects/productPage"
 import productListURLs from "../fixtures/productListURLs"
 import { anyProductFromList } from "../../utility/anyProductFromList"
+import cart from "../../pageObjects/cart"
 
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
@@ -51,6 +52,14 @@ Cypress.Commands.add('login', () => {
         singleLogin.logInButton.should('be.visible')
         singleLogin.logInButton.click()
     })
+})
+
+Cypress.Commands.add('clearCart', () => {
+    cart.cartPageLink()
+    singleRegister.pageTitle.should('be.visible').and('contain.text', 'Shopping Cart')
+    cart.deleteFromCartButton.should('be.visible')
+    cart.deleteFromCartButton.click()
+    cart.emptyCartContent.should('be.visible').and('contain.text', 'Your shopping cart is empty!')
 })
 
 Cypress.Commands.add("addSomeProductToCart", (maxValue) => {
