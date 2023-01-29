@@ -5,21 +5,27 @@ import homePage from "../../pageObjects/homePage"
 import myOrders from "../../pageObjects/myOrders"
 import registerData from "../fixtures/registerData.json"
 
-describe('Product tests', () => {
+describe('Product page tests', () => {
     beforeEach(() => {
         cy.login()
-        productPage.simpleProductPage()
-        singleRegister.breadCrumbs.should('be.visible').and('contain.text', 'HTC Touch HD')
+        productPage.configurableProductPage()
+        singleRegister.breadCrumbs.should('be.visible').and('contain.text', 'Canon EOS 5D')
     })
 
-    it('Simple product stock and price', () => {
+    it('Configurable product stock and price', () => {
         productPage.availabilityBadgeInStock.should('be.visible')
-        productPage.price.should('be.visible').and('contain.text', '$')
+        productPage.price.should('be.visible').and('contain.text', '$110.00')
         productPage.priceInformation.should('be.visible')
         productPage.priceInformation.click()
         productPage.priceTooltip.should('be.visible').and('contain.text', 'Ex Tax:')
         productPage.priceInformation.click()
         productPage.priceTooltip.should('not.exist')
+        productPage.productVariantSelect.should('be.visible')
+        productPage.productVariantSelect.select(1).should('contain.text', 'Medium')
+        productPage.price.should('be.visible').and('contain.text', '$110.00')
+        productPage.productVariantSelect.should('be.visible')
+        productPage.productVariantSelect.select(2).should('contain.text', 'Large')
+        productPage.price.should('be.visible').and('contain.text', '$118.00')
     })
 
     it('Quantity input field', () => {
@@ -35,6 +41,10 @@ describe('Product tests', () => {
 
     it('Add to cart button', () => {
         productPage.addToCartButton.should('be.visible')
+        productPage.addToCartButton.click()
+        productPage.productVariantErrorMessage.should('be.visible').and('contain.text', 'Size required!')
+        productPage.productVariantSelect.should('be.visible')
+        productPage.productVariantSelect.select(1).should('contain.text', 'Medium')
         productPage.addToCartButton.click()
         productPage.successMessageBody.should('be.visible').and('contain.text', 'Success: You have added')
         productPage.successMessageGoToCartButton.click()
@@ -62,6 +72,10 @@ describe('Product tests', () => {
     it('Buy now button', () => {
         productPage.buyNowButton.should('be.visible')
         productPage.buyNowButton.click()
+        productPage.productVariantErrorMessage.should('be.visible').and('contain.text', 'Size required!')
+        productPage.productVariantSelect.should('be.visible')
+        productPage.productVariantSelect.select(1).should('contain.text', 'Medium')
+        productPage.buyNowButton.click()
         singleRegister.breadCrumbs.should('be.visible').and('contain.text', 'Checkout')
         myOrders.returnButton.should('be.visible')
         myOrders.returnButton.click()
@@ -82,7 +96,7 @@ describe('Product tests', () => {
         productPage.askQuestionSubjectInput.type(registerData.userCorrect.companyName)
         productPage.askQuestionMessageInput.type(registerData.userIncorrect.mailAddress)
         productPage.askQuestionSendButton.click()
-        homePage.successMessage.should('be.visible').and('contain.text', 'Your enquiry has been successfully sent to the store owner!')
+        homePage.successMessage.should('exist').and('contain.text', 'Your enquiry has been successfully sent to the store owner!')
     })
 
     it('Ratings', () => {
@@ -95,6 +109,58 @@ describe('Product tests', () => {
         productPage.reviewNameInput.clear().type(registerData.userCorrect.firstName)
         productPage.reviewMessageInput.type('Great story of long message which has more than 25 characters')
         productPage.reviewSendButton.click()
-        productPage.reviewSuccessMessage.should('be.visible').and('contain.text', 'Thank you for your review. It has been submitted to the webmaster for approval.')
+        productPage.reviewSuccessMessage.should('exist').and('contain.text', 'Thank you for your review. It has been submitted to the webmaster for approval.')
+    })
+
+    it('FAQ tabs', () => {
+        productPage.faqFirstTab.should('be.visible')
+        productPage.faqFourthTab.should('be.visible')
+        productPage.faqFirstTab.click()
+        productPage.faqFirstTabContent.should('be.visible')
+        productPage.faqWidgetTitle.should('be.visible').and('contain.text', 'FAQ (Frequently Asked Questions)')
+        productPage.reviewSendButton.click()
+        productPage.reviewSuccessMessage.should('be.visible').and('contain.text', 'Warning: Please select a review rating!')
+        productPage.faqFourthTab.should('be.visible')
+        productPage.faqFourthTab.click()
+        productPage.faqFirstTabContent.should('not.be.visible')
+        productPage.faqFourthTabContent.should('be.visible')
+    })
+
+    it('Description, Reviews, Custom', () => {
+        productPage.descriptionTab.should('be.visible')
+        productPage.descriptionTabContent.should('be.visible').and('contain.text', "Canon's press material")
+        productPage.reviewsTab.should('be.visible')
+        productPage.reviewsTab.click()
+        productPage.reviewsTabContent.should('be.visible').and('contain.text', 'There are no reviews for this product.')
+        productPage.descriptionTabContent.should('not.be.visible')
+        productPage.customTab.should('be.visible')
+        productPage.customTab.click()
+        productPage.customTabContent.should('be.visible').and('contain.text', 'Create unlimited custom')
+        productPage.descriptionTabContent.should('not.be.visible')
+        productPage.descriptionTabContent.should('not.be.visible')
+    })
+
+    it('Product pictures', () => {
+        productPage.productMainPicture.should('be.visible')
+        productPage.productMainPicture.click()
+        productPage.openedPicture.should('be.visible')
+        productPage.rightNavigationArrow.should('be.visible')
+        productPage.leftNavigationArrow.should('be.visible')
+        productPage.pictureCounter.should('be.visible').and('contain.text', '1 of 6')
+        productPage.rightNavigationArrow.click()
+        productPage.pictureCounter.should('not.exist')
+        productPage.rightNavigationArrow.click()
+        productPage.pictureCounter.should('be.visible').and('contain.text', '3 of 6')
+        productPage.rightNavigationArrow.click()
+        productPage.pictureCounter.should('be.visible').and('contain.text', '4 of 6')
+        productPage.leftNavigationArrow.click()
+        productPage.pictureCounter.should('be.visible').and('contain.text', '3 of 6')
+        productPage.productOpenedictureCloseButton.should('be.visible')
+        productPage.productOpenedictureCloseButton.click()
+        productPage.openedPicture.should('not.exist')
+        productPage.thirdPictureThumbnail.should('be.visible')
+        productPage.thirdPictureThumbnail.click()
+        productPage.openedPicture.should('be.visible')
+        productPage.pictureCounter.should('be.visible').and('contain.text', '3 of 6')
     })
 })

@@ -162,5 +162,89 @@ class ProductPage {
     get reviewSendButton() {
         return cy.get('#button-review')
     }
+
+    get faqFirstTab() {
+        return cy.get('#mz-faq-label-216863-0')
+    }
+
+    get faqFourthTab() {
+        return cy.get('#mz-faq-label-216863-3')
+    }
+
+    get faqFirstTabContent() {
+        return cy.get('#mz-faq-panel-216863-0 > .card-body > p')
+    }
+
+    get faqFourthTabContent() {
+        return cy.get('#mz-faq-panel-216863-3 > .card-body > p')
+    }
+
+    get faqWidgetTitle() {
+        return cy.get('.widget-title')
+    }
+
+    get goToTopButton() {
+        return cy.get('#back-to-top > .fas')
+    }
+
+    get descriptionTab() {
+        return cy.get('#entry_216814 > > div > .nav > :nth-child(1)')
+    }
+
+    get descriptionTabContent() {
+        return cy.get('#mz-design-tab-216814-0 > .entry-content > :nth-child(1)')
+    }
+
+    get reviewsTab() {
+        return cy.get('#entry_216814 > > div > .nav > :nth-child(2)')
+    }
+
+    get reviewsTabContent() {
+        return cy.get('#mz-design-tab-216814-2 > .entry-content > .review')
+    }
+
+    get customTab() {
+        return cy.get('.clearfix > > .nav > :nth-child(3)')
+    }
+
+    get customTabContent() {
+        return cy.get('#mz-design-tab-216814-3')
+    }
+
+    get productMainPicture() {
+        return cy.get('#image-gallery-216811 > .image-thumb > .thumbnail > .img-fluid')
+    }
+
+    get openedPicture() {
+        return cy.get('.mfp-img')
+    }
+
+    get rightNavigationArrow() {
+        return cy.get('.mfp-arrow-right')
+    }
+
+    get leftNavigationArrow() {
+        return cy.get('.mfp-arrow-left')
+    }
+
+    get pictureCounter() {
+        return cy.get('.mfp-counter')
+    }
+
+    get productOpenedictureCloseButton() {
+        return cy.get('.mfp-close')
+    }
+
+    get thirdPictureThumbnail() {
+        return cy.get('.swiper-slide-next > .thumbnail > img')
+    }
+
+    get productVariantSelect() {
+        return cy.get("[data-id='216836'] .custom-select")
+    }
+
+    get productVariantErrorMessage() {
+        return cy.get("[data-id='216836'] .text-danger")
+    }
 }
 export default new ProductPage()
