@@ -4,7 +4,7 @@ class ProductPage {
     }
 
     configurableProductPage() {
-        cy.visit('https://ecommerce-playground.lambdatest.io/index.php?route=product/product&path=18&product_id=30')
+        cy.visit('https://ecommerce-playground.lambdatest.io/index.php?route=product/product&path=20&product_id=51')
     }
 
     get addToWishListButton() {
