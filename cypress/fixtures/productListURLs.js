@@ -6,6 +6,5 @@ export default [
     "/index.php?route=product/product&path=17&product_id=32",
     "/index.php?route=product/product&path=17&product_id=33",
     "/index.php?route=product/product&path=17&product_id=34",
-    "/index.php?route=product/product&path=17&product_id=36",
     "/index.php?route=product/product&path=17&product_id=40",
 ]
