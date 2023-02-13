@@ -199,4 +199,5 @@ class Checkout {
         return cy.get('#button-confirm')
     }
 }
+
 export default new Checkout()
