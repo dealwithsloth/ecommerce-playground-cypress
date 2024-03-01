@@ -47,8 +47,10 @@ Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
 Cypress.Commands.add('login', () => {
     cy.session('loginSession', () => {
         cy.visit('/index.php?route=account/login')
-        singleRegister.emailInput.clear().type(registerData.userCorrect.mailAddress)
-        singleRegister.passwordInput.clear().type(registerData.userCorrect.password, { sensitive: true })
+        singleRegister.emailInput.clear()
+        singleRegister.emailInput.type(registerData.userCorrect.mailAddress)
+        singleRegister.passwordInput.clear()
+        singleRegister.passwordInput.type(registerData.userCorrect.password, { sensitive: true })
         singleLogin.logInButton.should('be.visible')
         singleLogin.logInButton.click()
     })
