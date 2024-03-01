@@ -95,6 +95,14 @@ class Checkout {
         return cy.get("[for='input-shipping-address-same']")
     }
 
+    get shippingAddressForm() {
+        return cy.get('#shipping-new')
+    }
+
+    get shippingAddressExistingAddress() {
+        return cy.get('#shipping-address > div:nth-of-type(1) > .custom-control')
+    }
+
     get existingShippingAddressSelect() {
         return cy.get("[name='shipping[address_id]']")
     }
