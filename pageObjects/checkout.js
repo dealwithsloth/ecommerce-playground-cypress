@@ -119,8 +119,16 @@ class Checkout {
         return cy.get('#shipping-new > div:nth-of-type(2) .invalid-feedback')
     }
 
+    get shippingAddressCompanyNameInput() {
+        return cy.get('#input-shipping-company')
+    }
+
     get shippingAddressFirstLineInput() {
         return cy.get('#input-shipping-address-1')
+    }
+
+    get shippingAddressSecondLineInput() {
+        return cy.get('#input-shipping-address-2')
     }
 
     get shippingaddressFirstLineErrorMessage() {
@@ -149,6 +157,10 @@ class Checkout {
 
     get shippingAddressRegionErrorMessage() {
         return cy.get('#shipping-new > div:nth-of-type(9) .invalid-feedback')
+    }
+
+    get shippingAddressPostCodeInput() {
+        return cy.get('#input-shipping-postcode')
     }
 
     get summaryFieldCard() {

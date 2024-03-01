@@ -9,6 +9,7 @@ describe('Cart', () => {
     beforeEach(() => {
         cy.login()
         cart.cartPageLink()
+        cy.url().should('include', 'checkout/cart')
         singleRegister.pageTitle.should('be.visible').and('contain.text', 'Shopping Cart')
         singleRegister.breadCrumbs.should('be.visible').and('contain.text', 'Shopping Cart')
     })
