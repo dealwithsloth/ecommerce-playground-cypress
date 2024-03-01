@@ -30,7 +30,7 @@ const billingAddressInputs = () => {
 
 const shippingAddressInputs = () => {
     checkout.shippingAddressFirstNameInput.should('exist')
-    checkout.shippingAddressFirstNameInput.click()
+    checkout.shippingAddressFirstNameInput.type('asd')
     checkout.shippingAddressLastNameInput.should('exist')
     checkout.shippingAddressLastNameInput.click()
     checkout.shippingAddressCompanyNameInput.should('exist')
@@ -90,9 +90,14 @@ describe('Checkout tests', () => {
     })
 
     it('Shipping Address', () => {
+        checkout.billingAddressSelect.contains(registerData.userCorrect.firstName)
+        cart.couponCodeInputField.should('be.visible')
         checkout.shippingAddressSameAsBilling.should('exist')
         checkout.shippingAddressSameAsBilling.click()
-        checkout.addNewShippingAddress.click()
+        checkout.shippingAddressExistingAddress.should('be.visible')
+        checkout.addNewShippingAddress.should('exist')
+        checkout.addNewShippingAddress.click({ timeout: 4000 })
+        checkout.shippingAddressForm.should('exist')
         shippingAddressInputs()
         checkout.shippingAddressPostCodeInput.clear()
         checkout.shippingAddressCountrySelect.should('be.visible').contains(registerData.userCorrect.country)
@@ -100,8 +105,6 @@ describe('Checkout tests', () => {
         checkout.shippingAddressRegionSelect.should('be.visible').contains(' --- None --- ')
         checkout.shippingAddressRegionSelect.select(0)
         cy.url().should('include', 'checkout/checkout')
-        checkout.shippingAddressSecondLineInput.should('exist')
-        checkout.shippingAddressSecondLineInput.type('test')
         checkout.commentInputField.click()
         checkout.commentInputField.type('test')
         checkout.termsAgreement.should('exist')
