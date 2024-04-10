@@ -58,7 +58,7 @@ describe('Cart', () => {
         singleRegister.errorMessage.should('be.visible').and('contain.text', 'Warning: Coupon is either invalid, expired or reached its usage limit!')
     })
 
-    it('Cart shipping', () => {
+    it('Cart shipping form', () => {
         cart.estimateShippingCollapse.should('be.visible')
         cart.estimateShippingCollapse.click()
         addressBook.countrySelect.should('be.visible')
