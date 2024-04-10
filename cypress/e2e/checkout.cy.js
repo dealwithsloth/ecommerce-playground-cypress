@@ -31,6 +31,7 @@ const billingAddressInputs = () => {
 const shippingAddressInputs = () => {
     checkout.shippingAddressFirstNameInput.should('exist')
     checkout.shippingAddressFirstNameInput.type('asd')
+    checkout.shippingAddressFirstNameInput.clear()
     checkout.shippingAddressLastNameInput.should('exist')
     checkout.shippingAddressLastNameInput.click()
     checkout.shippingAddressCompanyNameInput.should('exist')

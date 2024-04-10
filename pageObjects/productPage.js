@@ -4,7 +4,7 @@ class ProductPage {
     }
 
     configurableProductPage() {
-        cy.visit('https://ecommerce-playground.lambdatest.io/index.php?route=product/product&path=20&product_id=51')
+        cy.visit('https://ecommerce-playground.lambdatest.io/index.php?route=product/product&path=20&product_id=68')
     }
 
     get addToWishListButton() {
@@ -188,7 +188,7 @@ class ProductPage {
     }
 
     get descriptionTab() {
-        return cy.get('#entry_216814 > > div > .nav > :nth-child(1)')
+        return cy.get("[href='#mz-design-tab-216814-0']")
     }
 
     get descriptionTabContent() {
@@ -196,7 +196,7 @@ class ProductPage {
     }
 
     get reviewsTab() {
-        return cy.get('#entry_216814 > > div > .nav > :nth-child(2)')
+        return cy.get("[href='#mz-design-tab-216814-2']")
     }
 
     get reviewsTabContent() {
@@ -204,7 +204,7 @@ class ProductPage {
     }
 
     get customTab() {
-        return cy.get('.clearfix > > .nav > :nth-child(3)')
+        return cy.xpath("//a[contains(.,'Custom')]")
     }
 
     get customTabContent() {
